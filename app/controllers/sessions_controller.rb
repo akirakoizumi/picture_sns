@@ -7,9 +7,10 @@ class SessionsController < ApplicationController
     user = User.find_by(username: session_params[:username])
 
     if user&.authenticate(session_params[:password])
-      session[:user_id] = user.id
+      log_in user
       flash[:success] = 'ログインしました。'
-      redirect_to user_path(user)
+      remember user
+      redirect_to user
     else
       flash.now[:danger] = session_params[:username].to_s
       render :new
@@ -19,6 +20,7 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     flash[:success] = 'ログアウトしました。'
+    log_out if logged_in?
     redirect_to root_url
   end
 
