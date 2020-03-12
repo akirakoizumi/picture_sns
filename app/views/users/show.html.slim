@@ -8,3 +8,12 @@ table.table.table-hover
     tr
       th= User.human_attribute_name(:name)
       td= @user.name
+    tr
+      th= User.human_attribute_name(:username)
+      td= @user.username
+    tr
+      th= User.human_attribute_name(:email)
+      td= @user.email
+    tr
+      th= User.human_attribute_name(:password)
+      td= @user.password
