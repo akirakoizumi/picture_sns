@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(session_params[:password])
       session[:user_id] = user.id
-      redirect_to root_url, notice: 'ログインしました。'
+      flash[:success] = 'ログインしました。'
+      redirect_to user_path(user)
     else
       flash.now[:danger] = session_params[:username].to_s
       render :new
@@ -17,7 +18,8 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url, notice: 'ログアウトしました。'
+    flash[:success] = 'ログアウトしました。'
+    redirect_to root_url
   end
 
   private
