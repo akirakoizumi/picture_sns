@@ -9,7 +9,8 @@ html
   body
 
     .app-title.navbar.navbar-expand-md
-      .navbar-brand picture_sns
+      = link_to  "picture_sns", root_path, class: 'navbar-brand'
+
     .container
       = yield
       = debug(params) if Rails.env.development?

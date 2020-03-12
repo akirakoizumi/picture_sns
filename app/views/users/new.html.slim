@@ -2,6 +2,11 @@
 
 h1 Sign up
 
+- if @user.errors.present?
+  ul#error_explanation
+    - @user.errors.full_messages.reverse_each do |message|
+      li= message
+
 = form_with model: @user, local: true do |f|
   .form-group
     = f.label :name
@@ -12,5 +17,11 @@ h1 Sign up
   .form-group
     = f.label :password
     = f.text_field :password, class: 'form-control col-4', id: 'user_password'
+  .form-group
+    = f.label :password_confirmation
+    = f.text_field :password_confirmation, class: 'form-control col-4', id: 'user_password_confirmation'
 
-  = f.submit nil, class: 'btn btn-primary'
+  = f.submit nil, class: 'btn btn-primary col-4 mb-5'
+
+
+= link_to  '利用規約はコチラ', terms_path 
