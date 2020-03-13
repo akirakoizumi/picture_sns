@@ -2,6 +2,8 @@
 
 # ユーザーアカウントの管理
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: %i[edit update]
+
   def index; end
 
   def show
@@ -43,8 +45,10 @@ class UsersController < ApplicationController
                                  :phone_number, :gender, :password, :password_confirmation)
   end
 
-  def user_params2
-    params.require(:user).permit(:name, :username, :website, :bio, :email,
-                                 :phone_number, :gender)
+  def logged_in_user
+    return if logged_in?
+
+    flash[:danger] = 'ログインしてください'
+    redirect_to login_url
   end
 end

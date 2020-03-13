@@ -14,5 +14,17 @@ table.table.table-hover
     tr
       th= User.human_attribute_name(:email)
       td= @user.email
+    tr
+      th= User.human_attribute_name(:website)
+      td= @user.website
+    tr
+      th= User.human_attribute_name(:bio)
+      td= @user.bio
+    tr
+      th= User.human_attribute_name(:phone_number)
+      td= @user.phone_number
+    tr
+      th= User.human_attribute_name(:gender)
+      td= @user.gender
 
 = link_to "ログアウト", logout_path, method: :delete, class: "btn btn-lg btn-primary mb-3" 
