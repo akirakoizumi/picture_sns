@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  resources :users
+  resources :users do
+    member do
+      get :edit_password
+    end
+  end
   get  '/signup', to: 'users#new'
 
   root 'static_pages#home'
