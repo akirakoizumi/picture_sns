@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  def new; end
+  def new
+    @user = User.new
+  end
 
   def create
     user = User.find_by(username: session_params[:username])
@@ -12,13 +14,12 @@ class SessionsController < ApplicationController
       remember user
       redirect_to user
     else
-      flash.now[:danger] = session_params[:username].to_s
+      flash.now[:danger] = 'Invalid email/password combination'
       render :new
     end
   end
 
   def destroy
-    reset_session
     flash[:success] = 'ログアウトしました。'
     log_out if logged_in?
     redirect_to root_url
