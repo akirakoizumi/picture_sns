@@ -9,7 +9,11 @@ html
   body
 
     .app-title.navbar.navbar-expand-md
-      = link_to  "picture_sns", root_path, class: 'navbar-brand'
+      = link_to "picture_sns", root_path, class: 'navbar-brand'
+      - if logged_in?
+        = link_to "Settings", edit_user_path(current_user)
+      - else
+        
 
     - flash.each do |message_type, message|
       = content_tag(:div, message, class: "alert alert-#{message_type}")

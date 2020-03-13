@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :username, presence: true, length: { maximum: 50 }
   has_secure_password
 
+  enum gender_type: { '' => 0, '男性' => 1, '女性' => 2, 'その他' => 3, '答えたくない' => 4 }
+
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

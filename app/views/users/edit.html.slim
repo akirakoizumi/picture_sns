@@ -1,0 +1,26 @@
+- provide(:title, "アカウント情報編集")
+
+= form_with model: @user, local: true do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control col-4', id: 'user_name'
+  .form-group
+    = f.label :username
+    = f.text_field :username, class: 'form-control col-4', id: 'user_username'
+  .form-group
+    = f.label :website
+    = f.text_field :website, class: 'form-control col-4', id: 'user_website'
+  .form-group
+    = f.label :bio
+    = f.text_area :bio, rows: 5, class: 'form-control col-4', id: 'user_bio'
+  .form-group
+    = f.label :email
+    = f.text_field :email, class: 'form-control col-4', id: 'user_email'
+  .form-group
+    = f.label :phone_number
+    = f.text_field :phone_number, class: 'form-control col-4', id: 'user_phone_number'
+  .form-group    
+    = f.label :gender
+    //= f.select(:gender, options_for_select([['AM', 1], ['PM', 2]]), {}, {class: "form-control col-4"})
+    = f.select(:gender, options_for_select(User.gender_types), {}, {class: "form-control col-4"})
+  = f.submit nil, class: 'btn btn-primary col-4 mb-5'
