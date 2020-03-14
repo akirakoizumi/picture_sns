@@ -27,8 +27,8 @@ table.table.table-hover
       th= User.human_attribute_name(:gender)
       td= @user.gender
 
-= link_to "ユーザー情報編集", edit_user_path, class: "btn btn-lg btn-primary mb-3" 
+= link_to "ユーザー情報編集", edit_user_path, class: "btn btn-lg btn-primary mr-3" 
 
-= link_to "パスワード変更", edit_password_user_path, class: "btn btn-lg btn-primary mb-3" 
+= link_to "パスワード変更", edit_password_user_path, class: "btn btn-lg btn-primary mr-3" 
 
-= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-lg btn-primary mb-3" 
+= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-lg btn-primary mr-3" 

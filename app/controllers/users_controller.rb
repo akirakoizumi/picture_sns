@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'ユーザー登録が完了しました。'
-      redirect_to @user
+      redirect_back_or user
     else
       render 'new'
     end
@@ -68,6 +68,7 @@ class UsersController < ApplicationController
   def logged_in_user
     return if logged_in?
 
+    store_location
     flash[:danger] = 'ログインしてください'
     redirect_to login_url
   end
