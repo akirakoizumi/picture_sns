@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :edit_password
+      patch :update_password
     end
   end
   get  '/signup', to: 'users#new'

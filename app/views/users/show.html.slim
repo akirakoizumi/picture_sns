@@ -3,8 +3,8 @@ h1 ユーザーの詳細
 table.table.table-hover
   tbody
     tr
-      th= User.human_attribute_name(:id)
-      td= @user.id
+      th style="width:15%" = User.human_attribute_name(:id)
+      td style="width:85%" = @user.id
     tr
       th= User.human_attribute_name(:name)
       td= @user.name
@@ -28,4 +28,7 @@ table.table.table-hover
       td= @user.gender
 
 = link_to "ユーザー情報編集", edit_user_path, class: "btn btn-lg btn-primary mb-3" 
+
+= link_to "パスワード変更", edit_password_user_path, class: "btn btn-lg btn-primary mb-3" 
+
 = link_to "ログアウト", logout_path, method: :delete, class: "btn btn-lg btn-primary mb-3" 

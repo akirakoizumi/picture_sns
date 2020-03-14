@@ -2,8 +2,8 @@
 
 # ユーザーアカウントの管理
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: %i[edit update]
-  before_action :correct_user,   only: %i[edit update]
+  before_action :logged_in_user, only: %i[edit update edit_password]
+  before_action :correct_user,   only: %i[edit update edit_password]
 
   def index; end
 
@@ -29,7 +29,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def edit_password; end
+  def edit_password
+    @user = User.find(params[:id])
+  end
 
   def update
     @user = User.find(params[:id])
@@ -41,11 +43,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_password
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params_password_only)
+      flash[:success] = 'パスワードを変更しました。'
+      redirect_to @user
+    else
+      render 'edit_password_user'
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :username, :website, :bio, :email,
                                  :phone_number, :gender, :password, :password_confirmation)
+  end
+
+  def user_params_password_only
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
   # ログイン済みユーザーかどうか確認

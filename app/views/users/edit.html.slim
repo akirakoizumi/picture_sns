@@ -21,6 +21,5 @@
     = f.text_field :phone_number, class: 'form-control col-4', id: 'user_phone_number'
   .form-group    
     = f.label :gender
-    //= f.select(:gender, options_for_select([['AM', 1], ['PM', 2]]), {}, {class: "form-control col-4"})
     = f.select(:gender, options_for_select(User.gender_types), {}, {class: "form-control col-4"})
   = f.submit nil, class: 'btn btn-primary col-4 mb-5'
