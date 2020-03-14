@@ -2,10 +2,12 @@
 
 # ユーザーアカウントの管理
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: %i[edit update edit_password]
+  before_action :logged_in_user, only: %i[index edit update edit_password]
   before_action :correct_user,   only: %i[edit update edit_password]
 
-  def index; end
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])
