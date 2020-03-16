@@ -1,5 +1,8 @@
 ---
 ja:
+  will_paginate:
+    previous_label: 前のページ
+    next_label: 次のページ
   activerecord:
     errors:
       messages:
