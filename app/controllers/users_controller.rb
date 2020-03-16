@@ -2,8 +2,8 @@
 
 # ユーザーアカウントの管理
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: %i[index edit update edit_password]
-  before_action :correct_user,   only: %i[edit update edit_password]
+  before_action :logged_in_user, only: %i[index edit update edit_password destroy]
+  before_action :correct_user,   only: %i[edit update edit_password destroy]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -55,6 +55,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = 'アカウントを削除しました。'
+    redirect_to root_path
+  end
+
   private
 
   def user_params
@@ -78,6 +84,6 @@ class UsersController < ApplicationController
   # 正しいユーザーかどうか確認
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless @user == current_user
+    redirect_to(root_url) unless current_user?(@user)
   end
 end

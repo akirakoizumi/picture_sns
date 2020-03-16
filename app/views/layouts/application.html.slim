@@ -10,9 +10,11 @@ html
 
     .app-title.navbar.navbar-expand-md
       = link_to "picture_sns", root_path, class: 'navbar-brand'
-      - if logged_in?
-        = link_to "Settings", edit_user_path(current_user)
-      - else
+      ul.nav.navbar-nav
+        - if logged_in?
+          li= link_to "Settings", edit_user_path(current_user)
+          li= link_to "Index", users_path
+        - else
         
 
     - flash.each do |message_type, message|
