@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'ユーザー登録が完了しました。'
-      redirect_back_or user
+      redirect_back_or @user
     else
       render 'new'
     end
@@ -37,7 +37,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    # if @user.update_attributes(user_params)
+    if @user.update!(user_params)
       flash[:success] = 'アカウント情報を編集しました。'
       redirect_to @user
     else
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :username, :website, :bio, :email,
-                                 :phone_number, :gender, :password, :password_confirmation)
+                                 :phone_number, :gender, :password, :password_confirmation, :image)
   end
 
   def user_params_password_only

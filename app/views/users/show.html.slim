@@ -6,6 +6,9 @@ table.table.table-hover
       th style="width:15%" = User.human_attribute_name(:id)
       td style="width:85%" = @user.id
     tr
+      th= User.human_attribute_name(:image)      
+      td= image_tag @user.image if @user.image.attached?
+    tr
       th= User.human_attribute_name(:name)
       td= @user.name
     tr

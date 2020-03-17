@@ -2,6 +2,9 @@
 
 = form_with model: @user, local: true do |f|
   .form-group
+    = f.label :image
+    = f.file_field :image, class: 'form-control col-4', id: 'image'
+  .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control col-4', id: 'user_name'
   .form-group
@@ -21,7 +24,7 @@
     = f.text_field :phone_number, class: 'form-control col-4', id: 'user_phone_number'
   .form-group    
     = f.label :gender
-    = f.select(:gender, options_for_select(User.gender_types), {}, {class: "form-control col-4"})
+    = f.select(:gender, options_for_select(User.genders, selected: @user.gender), {}, {class: "form-control col-4"})
   = f.submit nil, class: 'btn btn-primary col-4 mb-5'
 
 = link_to "アカウントを削除する", @user, method: :delete, data: { confirm: "アカウントを削除してもよろしいですか？" },  class: "btn btn-lg btn-danger mr-3" 

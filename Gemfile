@@ -72,3 +72,5 @@ gem 'jquery-rails'
 
 gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate'
+
+gem 'image_processing', '~> 1.2'
