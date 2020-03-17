@@ -8,20 +8,21 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
 
-    .app-title.navbar.navbar-expand-md
-      = link_to "picture_sns", root_path, class: 'navbar-brand'
-      ul.nav.navbar-nav
-        - if logged_in?
-          li= link_to "Settings", edit_user_path(current_user)
-          li= link_to "Index", users_path
-        - else
-        
-
-    - flash.each do |message_type, message|
-      = content_tag(:div, message, class: "alert alert-#{message_type}")
-
+    
 
     .container
+      .app-title.nav.navbar.navbar-expand-md
+        = link_to "picture_sns", root_path, class: 'navbar-brand'
+        ul.navbar-nav.navbar-right
+          - if logged_in?
+            li= link_to "Settings", edit_user_path(current_user)
+            li= link_to "Index", users_path
+
+      - flash.each do |message_type, message|
+        = content_tag(:div, message, class: "alert alert-#{message_type}")
+
       = yield
       .mt-5
         = debug(params) if Rails.env.development?
+      
+      = render 'layouts/footer' 
